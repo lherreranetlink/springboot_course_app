@@ -6,6 +6,4 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 @Data
 public class IngredientRef {
     private final String ingredient;
-
-    //AggregateReference<Ingredient, String> ingredient;
 }
