@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 
 @Data
 public class TacoOrder {
 
+    @Id
     private Long id;
 
     @NotBlank(message = "Delivery Name is required")
@@ -38,7 +41,8 @@ public class TacoOrder {
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
 
-    private Date placedAt;
+    @CreatedDate
+    private Date placedAt = new Date();
 
     private List<Taco> tacos = new ArrayList<>();
 

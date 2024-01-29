@@ -5,14 +5,15 @@ import java.util.Map;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import sia.tacocloud.tacos.domains.Ingredient;
+import sia.tacocloud.tacos.domains.IngredientRef;
 import sia.tacocloud.tacos.domains.Ingredient.Type;
 import sia.tacocloud.tacos.interfaces.IngredientRepository;
 
 @Component
-public class IngredientByIdConverter implements Converter<String, Ingredient> {
+public class IngredientByIdConverter implements Converter<String, IngredientRef> {
 
     private IngredientRepository ingredientRepo;
-    private Map<String, Ingredient> ingredientMap = new HashMap<>();
+    //private Map<String, Ingredient> ingredientMap = new HashMap<>();
 
     public IngredientByIdConverter(IngredientRepository ingredientRepo) {
         this.ingredientRepo = ingredientRepo;
@@ -32,8 +33,11 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
     }*/
 
     @Override
-    public Ingredient convert(String id) {
-        return ingredientRepo.findById(id).orElse(null);
+    public IngredientRef convert(String id) {
+        //System.out.println("Lala aqui ando");
+        Ingredient ing =  ingredientRepo.findById(id).orElse(null);
+
+        return new IngredientRef(ing.getId());
         //return ingredientMap.get(id);
     }
 }
