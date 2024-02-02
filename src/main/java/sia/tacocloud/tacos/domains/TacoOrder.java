@@ -1,5 +1,6 @@
 package sia.tacocloud.tacos.domains;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -9,12 +10,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 
 @Data
+@Entity
 public class TacoOrder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "Delivery Name is required")
@@ -44,6 +46,7 @@ public class TacoOrder {
     @CreatedDate
     private Date placedAt = new Date();
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
 
     public void addTaco(Taco taco) {

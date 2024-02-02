@@ -1,10 +1,17 @@
 package sia.tacocloud.tacos.domains;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Persistable;
 
 @Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Ingredient implements Persistable<String>{
 
     @Id
