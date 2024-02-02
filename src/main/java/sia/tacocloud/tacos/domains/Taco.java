@@ -23,7 +23,7 @@ public class Taco {
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
     @ManyToMany
-    private List<IngredientRef> ingredients;
+    private List<Ingredient> ingredients;
 
     private Date createdAt = new Date();
 }
